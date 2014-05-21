@@ -1,0 +1,3 @@
+[submodule "pyPushBullet"]
+	path = pyPushBullet
+	url = https://github.com/Azelphur/pyPushBullet.git
