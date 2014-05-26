@@ -59,15 +59,33 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>echo $@ &gt; /tmp/push_file
-apiKey=`cat ~/.pushbullet_api_key`
-~/bin/pyPushBullet/pushbullet_cmd.py $apiKey getdevices</string>
+					<string>import urllib2, os, base64, json
+
+keyFile = open(os.path.expanduser('~') + "/.pushbullet_api_key", "r")
+key = keyFile.readline().replace('\n', '')
+request = urllib2.Request("https://api.pushbullet.com/v2/devices")
+base64string = base64.encodestring('%s' % key).replace('\n', '')
+request.add_header("Authorization", "Basic %s" % base64string)
+request.add_header("Accept", "application/json")
+request.add_header("Content-type","application/json");
+
+result = urllib2.urlopen(request)
+result = result.read()
+result = result.decode("utf-8")
+
+jsonResponse = json.loads(result);
+devices = jsonResponse["devices"]
+
+for device in devices:
+    if "nickname" in device:
+        print("%s %s" % (device["iden"], device["nickname"]))
+</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
-					<integer>1</integer>
+					<integer>0</integer>
 					<key>shell</key>
-					<string>/bin/zsh</string>
+					<string>/usr/bin/python</string>
 					<key>source</key>
 					<string></string>
 				</dict>
@@ -86,7 +104,7 @@ apiKey=`cat ~/.pushbullet_api_key`
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>25197ABB-793F-4941-8FA8-F6233F886BA1</string>
+				<string>E3FAA07C-9C88-4CC2-8D56-7544480D55C6</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -96,9 +114,11 @@ apiKey=`cat ~/.pushbullet_api_key`
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>7E35C248-CB65-4671-B3BA-CD0D7FCECE5E</string>
+				<string>3920DBAC-E47B-40B5-98DA-1F8B598A2AF7</string>
+				<key>StartAction</key>
+				<false/>
 				<key>UUID</key>
-				<string>248CA46C-08F6-46DB-AA3F-A7079B34E408</string>
+				<string>7E5AB581-D3D7-4CEA-917D-BC1317EE5113</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -171,10 +191,12 @@ apiKey=`cat ~/.pushbullet_api_key`
 						<string>4</string>
 					</dict>
 				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>767.500000:854.000000</string>
+				<string>647.500000:704.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
@@ -272,7 +294,7 @@ apiKey=`cat ~/.pushbullet_api_key`
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>767.500000:671.000000</string>
+				<string>647.500000:521.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Choose from List.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
@@ -444,7 +466,7 @@ done</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>767.500000:566.000000</string>
+				<string>647.500000:416.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
@@ -618,7 +640,7 @@ done</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>767.500000:383.000000</string>
+				<string>647.500000:233.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
@@ -628,24 +650,24 @@ done</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>59D8A89E-BC40-4CEB-9D46-AFC8C5D82162</key>
-		<dict>
-			<key>from</key>
-			<string>FC72B2A0-26E0-48D8-B4F4-A6B591754407 - FC72B2A0-26E0-48D8-B4F4-A6B591754407</string>
-			<key>to</key>
-			<string>F23A6C17-75D5-47D2-B12B-A2F9000B0696 - F23A6C17-75D5-47D2-B12B-A2F9000B0696</string>
-		</dict>
-		<key>857EAB7F-1533-405B-8FB6-4A37226DA504</key>
+		<key>5EA43413-FC36-483B-8896-00AC66F8CB9C</key>
 		<dict>
 			<key>from</key>
 			<string>90A07409-B0CB-4E90-B957-4D6B3A90A49A - 90A07409-B0CB-4E90-B957-4D6B3A90A49A</string>
 			<key>to</key>
 			<string>FC72B2A0-26E0-48D8-B4F4-A6B591754407 - FC72B2A0-26E0-48D8-B4F4-A6B591754407</string>
 		</dict>
-		<key>9B466236-86A6-42A8-8C25-107B0F80E304</key>
+		<key>7ADDF1EC-F02D-4ADA-BFA6-0D41D41B64CA</key>
 		<dict>
 			<key>from</key>
-			<string>248CA46C-08F6-46DB-AA3F-A7079B34E408 - 248CA46C-08F6-46DB-AA3F-A7079B34E408</string>
+			<string>FC72B2A0-26E0-48D8-B4F4-A6B591754407 - FC72B2A0-26E0-48D8-B4F4-A6B591754407</string>
+			<key>to</key>
+			<string>F23A6C17-75D5-47D2-B12B-A2F9000B0696 - F23A6C17-75D5-47D2-B12B-A2F9000B0696</string>
+		</dict>
+		<key>D935BCF6-F4D8-45D5-96D7-0550CAF3E992</key>
+		<dict>
+			<key>from</key>
+			<string>7E5AB581-D3D7-4CEA-917D-BC1317EE5113 - 7E5AB581-D3D7-4CEA-917D-BC1317EE5113</string>
 			<key>to</key>
 			<string>90A07409-B0CB-4E90-B957-4D6B3A90A49A - 90A07409-B0CB-4E90-B957-4D6B3A90A49A</string>
 		</dict>
