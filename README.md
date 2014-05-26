@@ -6,7 +6,7 @@ OSX service for pushing files to pushbullet
 Dependencies
 ===========
 
-clone [pyPushBullet](https://github.com/Azelphur/pyPushBullet) into `~/bin/`
+copy pyPushBullet from this repository into `~/bin/`
 
 create `~/.pushbullet_api_key` and place your api key from https://www.pushbullet.com/account in the file
 
