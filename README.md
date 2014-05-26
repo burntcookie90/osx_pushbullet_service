@@ -14,3 +14,6 @@ install the service
 
 right click any file in finder to push to your selected devices
 
+Chat
+---
+[![Gitter chat](https://badges.gitter.im/burntcookie90/osx_pushbullet_service.png)](https://gitter.im/burntcookie90/osx_pushbullet_service)
